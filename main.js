@@ -32,6 +32,25 @@ for (var i = 0; i < finances.length; i++) {
 }
 console.log("Net Losses (all time): $" + losses);
 
+// due to interpretation of this challenge module, I decided to go ahead and add another analysis.
+
+// net profit after deducting losses
+var profitAfterDeductions = 0;
+var deductions = 0;
+for (i = 0; i < finances.length; i++) {
+  var financeMoney = finances[i][1];
+  if (financeMoney > 0) {
+    profitAfterDeductions += financeMoney;
+  }
+  if (financeMoney < 0) {
+    deductions += financeMoney;
+  }
+}
+console.log(
+  "Net Profit (After loss deduction): " +
+    "$" +
+    (profitAfterDeductions += deductions)
+);
 // ===========================
 // 3)
 /*
