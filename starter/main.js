@@ -46,22 +46,41 @@ for (var i = 0; i < finances.length; i++) {
   averageProfitLosses += financeMoney;
   counter++;
 }
-
-console.log("Average change: " + averageProfitLosses / counter.toFixed(3));
+console.log("Average change: " + (averageProfitLosses / counter).toFixed(3));
 // the result is 446309.0465116279
-// but i round it to second decimal place, which rounds the number
+// but i round it to third decimal place, which rounds the number
 
-//console.log("Average change: " + averageProfitLosses + " and counter: " + counter);
-//console.log("Average of profits: " + profits / profitableMonthsTotal);
-
-// there are 74 profitable months, the rest, 12 are losses
-
-// this piece of code calculates that there are 74 profitable months, the rest are losses
-var profitableMonthsTotal = 0;
+// ===========================
+// 4) - The greatest increase in profits (date and amount) over the entire period.
+var greatestIncrease = 0;
+var greatestIncreaseMonth = "";
 for (var i = 0; i < finances.length; i++) {
+  var financeMonth = finances[i][0];
   var financeMoney = finances[i][1];
-  if (financeMoney > 0) {
-    profitableMonthsTotal++;
+  if (greatestIncrease <= financeMoney) {
+    greatestIncreaseMonth = financeMonth;
+    greatestIncrease = financeMoney;
   }
 }
-console.log("Total number of profitable months: " + profitableMonthsTotal);
+console.log(
+  `Greatest increase in profits: ${greatestIncreaseMonth} (${
+    "$" + greatestIncrease
+  })`
+);
+
+// 5) - The greatest decrease in profits (date and amount) over the entire period.
+var greatestDecrease = 0;
+var greatestDecreaseMonth = "";
+for (var i = 0; i < finances.length; i++) {
+  var financeMonth = finances[i][0];
+  var financeMoney = finances[i][1];
+  if (greatestDecrease >= financeMoney) {
+    greatestDecreaseMonth = financeMonth;
+    greatestDecrease = financeMoney;
+  }
+}
+console.log(
+  `Greatest loss in losses: ${greatestDecreaseMonth} (${
+    "$" + greatestDecrease
+  })`
+);
