@@ -19,7 +19,7 @@ for (var i = 0; i < finances.length; i++) {
     profits += financeMoney;
   }
 }
-console.log("Net Profit (all time): " + profits);
+console.log("Net Profit (all time): $" + profits);
 
 // for loop to get the net total of all losses
 // net losses should be -7327426
@@ -30,7 +30,7 @@ for (var i = 0; i < finances.length; i++) {
     losses += financeMoney;
   }
 }
-console.log("Net Losses (all time): " + losses);
+console.log("Net Losses (all time): $" + losses);
 
 // ===========================
 // 3)
@@ -39,15 +39,29 @@ console.log("Net Losses (all time): " + losses);
   - You will need to track what the total change in profits are from month to month and then find the average.
   - (`Total/Number of months`) 
   */
+var averageProfitLosses = 0;
+var counter = 0;
+for (var i = 0; i < finances.length; i++) {
+  var financeMoney = finances[i][1];
+  averageProfitLosses += financeMoney;
+  counter++;
+}
+
+console.log("Average change: " + averageProfitLosses / counter.toFixed(3));
+// the result is 446309.0465116279
+// but i round it to second decimal place, which rounds the number
+
+//console.log("Average change: " + averageProfitLosses + " and counter: " + counter);
+//console.log("Average of profits: " + profits / profitableMonthsTotal);
+
 // there are 74 profitable months, the rest, 12 are losses
 
 // this piece of code calculates that there are 74 profitable months, the rest are losses
-var profitableMonthsLength = 0;
+var profitableMonthsTotal = 0;
 for (var i = 0; i < finances.length; i++) {
   var financeMoney = finances[i][1];
   if (financeMoney > 0) {
-    console.log(financeMoney.length + " length of profits");
+    profitableMonthsTotal++;
   }
 }
-
-console.log("Average of profits: " + profits / profits.length);
+console.log("Total number of profitable months: " + profitableMonthsTotal);
